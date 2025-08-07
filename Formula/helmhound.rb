@@ -7,13 +7,10 @@ class Helmhound < Formula
   sha256 '1332b55ba29a69f60b96f9c01f02d022e749c983fd4345514ef4d909021320fb'
   license 'MIT'
 
-  def install
-    # システムにGoがあるかチェック、なければエラーメッセージ
-    go_cmd = which('go')
-    odie 'Go is required but not found. Install with: brew install go' if go_cmd.nil?
+  depends_on 'go' => :build
 
-    system go_cmd, 'build', *std_go_args(ldflags: '-s -w'), '.'
-    
+  def install
+    system 'go', 'build', *std_go_args(ldflags: '-s -w'), '.'
     bin.install 'helmhound.exe' => 'helmhound'
   end
 
