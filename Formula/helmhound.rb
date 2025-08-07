@@ -11,7 +11,7 @@ class Helmhound < Formula
 
   def install
     system 'go', 'build', *std_go_args(ldflags: '-s -w'), '.'
-    bin.install 'helmhound.exe' => 'helmhound'
+    bin.install 'helmhound'
   end
 
   test do
