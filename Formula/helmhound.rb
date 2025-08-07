@@ -10,7 +10,7 @@ class Helmhound < Formula
   depends_on 'go' => :build
 
   def install
-    system 'go', 'build', *std_go_args(ldflags: '-s -w'), '.'
+    system 'go', 'build', '-ldflags', '-s -w', '-o', 'helmhound', '.'
     bin.install 'helmhound'
   end
 
